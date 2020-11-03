@@ -285,7 +285,7 @@ void NetworkingModule::NetworkingHelper::SendRequest(
         else if (_stricmp(name.c_str(), "authorization") == 0)
           request.Headers().TryAppendWithoutValidation(
               Microsoft::Common::Unicode::Utf8ToUtf16(name), Microsoft::Common::Unicode::Utf8ToUtf16(value));
-        else
+        else if(_stricmp(name.c_str(), "content-length") != 0))
           request.Headers().Append(
               Microsoft::Common::Unicode::Utf8ToUtf16(name), Microsoft::Common::Unicode::Utf8ToUtf16(value));
       }
