@@ -239,7 +239,6 @@ void AttachContentHeaders(
     auto contentLengthHeader = atoi(contentLength.c_str());
     content.Headers().ContentLength() = contentLengthHeader;
   }
-
 }
 
 void AttachMultipartHeaders(winrt::Windows::Web::Http::IHttpContent content, const folly::dynamic &headers) {
@@ -356,7 +355,7 @@ void NetworkingModule::NetworkingHelper::SendRequest(
     }
 
     SendRequestAsync(getSelf(), m_httpClient, request, responseType == "text", requestId);
-  } catch (winrt::hresult_error const& ex) {
+  } catch (...) {
     OnRequestError(requestId, "Unhandled exception during request", false /*isTimeout*/);
   }
 }
